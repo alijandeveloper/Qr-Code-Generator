@@ -5,6 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const downloadBtn = document.getElementById("downloadBtn");
     const toggleMode = document.getElementById("toggleMode");
     const scanBtn = document.getElementById("scanBtn");
+    const container = document.querySelector(".container");
+
+    // Load dark mode preference from local storage
+    if (localStorage.getItem("dark-mode") === "enabled") {
+        enableDarkMode();
+    }
 
     generateBtn.addEventListener("click", () => {
         if (textInput.value.trim() === "") {
@@ -41,8 +47,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     toggleMode.addEventListener("click", () => {
-        document.body.classList.toggle("dark-mode");
+        if (document.body.classList.contains("dark-mode")) {
+            disableDarkMode();
+        } else {
+            enableDarkMode();
+        }
     });
+
+    function enableDarkMode() {
+        document.body.classList.add("dark-mode");
+        container.classList.add("dark-mode");
+        localStorage.setItem("dark-mode", "enabled");
+    }
+
+    function disableDarkMode() {
+        document.body.classList.remove("dark-mode");
+        container.classList.remove("dark-mode");
+        localStorage.setItem("dark-mode", "disabled");
+    }
 
     scanBtn.addEventListener("click", () => {
         alert("QR Code scanning feature coming soon! (Under development)");
