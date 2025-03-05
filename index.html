@@ -5,8 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code Generator</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="qrcode.min.js"></script>
+    <script defer src="script.js"></script>
 </head>
 <body>
-    
+    <div class="container">
+        <h1>QR Code Generator</h1>
+        <input type="text" id="textInput" placeholder="Enter text or URL">
+        <button id="generateBtn">Generate QR Code</button>
+        <div id="qrContainer"></div>
+        <button id="downloadBtn" style="display:none;">Download QR</button>
+        <button id="scanBtn">Scan QR Code</button>
+        <button id="toggleMode">Dark Mode</button>
+        <ul id="historyList"></ul>
+    </div>
 </body>
 </html>
