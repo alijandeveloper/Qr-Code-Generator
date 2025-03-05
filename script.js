@@ -4,22 +4,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const qrContainer = document.getElementById("qrContainer");
     const downloadBtn = document.getElementById("downloadBtn");
     const toggleMode = document.getElementById("toggleMode");
+    const scanBtn = document.getElementById("scanBtn");
 
     generateBtn.addEventListener("click", () => {
         if (textInput.value.trim() === "") {
             alert("Please enter text or a URL!");
             return;
         }
-        
+
         // Clear previous QR code before generating a new one
         qrContainer.innerHTML = "";
 
         // Generate new QR Code
-        const qrCode = new QRCode(qrContainer, {
+        new QRCode(qrContainer, {
             text: textInput.value.trim(),
             width: 200,
             height: 200,
-            correctLevel: QRCode.CorrectLevel.H  // High error correction
+            correctLevel: QRCode.CorrectLevel.H, // High error correction
         });
 
         setTimeout(() => {
@@ -41,5 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     toggleMode.addEventListener("click", () => {
         document.body.classList.toggle("dark-mode");
+    });
+
+    scanBtn.addEventListener("click", () => {
+        alert("QR Code scanning feature coming soon! (Under development)");
     });
 });
