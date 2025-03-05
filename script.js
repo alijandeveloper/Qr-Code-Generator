@@ -3,13 +3,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const generateBtn = document.getElementById("generateBtn");
     const qrContainer = document.getElementById("qrContainer");
     const downloadBtn = document.getElementById("downloadBtn");
-    const scanBtn = document.getElementById("scanBtn");
     const toggleMode = document.getElementById("toggleMode");
-    const historyList = document.getElementById("historyList");
 
     generateBtn.addEventListener("click", () => {
+        if (textInput.value.trim() === "") {
+            alert("Please enter text or a URL!");
+            return;
+        }
         qrContainer.innerHTML = "";
-        const qrCode = new QRCode(qrContainer, {
+        new QRCode(qrContainer, {
             text: textInput.value,
             width: 200,
             height: 200,
@@ -23,5 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
         a.href = qrImg;
         a.download = "qr-code.png";
         a.click();
+    });
+
+    toggleMode.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
     });
 });
